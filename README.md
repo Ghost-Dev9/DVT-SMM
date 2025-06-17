@@ -1,388 +1,258 @@
-# 🚀 DVT SMM Panel - Solution Complète
+# Dev-IT SMM Panel
 
-Panel SMM (Social Media Marketing) professionnel avec intégration Chargily Pay pour l'Algérie.
+Panel SMM professionnel avec intégration Chargily Pay pour l'Algérie.
 
-## 📋 Table des Matières
+## 🚀 Fonctionnalités
 
-- [Aperçu](#aperçu)
-- [Fonctionnalités](#fonctionnalités)
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Déploiement](#déploiement)
-- [Support](#support)
-
-## 🎯 Aperçu
-
-DVT SMM est une plateforme complète de marketing sur les réseaux sociaux qui permet aux utilisateurs algériens de booster leur présence en ligne avec des services de qualité et des paiements sécurisés via Chargily Pay.
-
-### Fonctionnalités Principales
-
-- 🎨 **Interface moderne** avec thème bleu professionnel
-- 🔐 **Authentification complète** (classique + OAuth Google/GitHub)
-- 💳 **Paiements Chargily Pay** (CIB/EDAHABIA)
-- 📊 **Dashboard analytics** avec Chart.js
-- 🛒 **Catalogue de services** SMM multi-plateformes
-- 👥 **Panel d'administration** complet
-- 📱 **Design responsive** pour tous appareils
+- **Dashboard moderne** avec thème bleu responsive
+- **Authentification sécurisée** avec JWT et refresh tokens
+- **Intégration Chargily Pay** (CIB/Edahabia) pour l'Algérie
+- **Gestion des services SMM** multi-plateformes
+- **Système de commandes** automatisé
+- **Panel d'administration** complet
+- **API RESTful** documentée
+- **Support mobile** responsive
 
 ## 🛠️ Technologies
 
-### Frontend
-- HTML5, CSS3, JavaScript (Vanilla)
-- Chart.js pour les graphiques
-- Responsive design
-- PWA Ready
-
 ### Backend
 - Node.js + Express.js
-- MongoDB + Mongoose
-- JWT Authentication
-- Passport.js (OAuth)
-- Chargily Pay SDK
+- MongoDB avec Mongoose
+- JWT pour l'authentification
+- Chargily Pay V2 API
+- Docker pour le déploiement
 
-## ⚡ Installation Rapide
+### Frontend
+- React 18 + Hooks
+- Tailwind CSS pour le design
+- React Query pour la gestion des données
+- React Router pour la navigation
+- Recharts pour les graphiques
 
-### Prérequis
+## 📦 Installation Rapide
+
+### 1. Prérequis
 ```bash
-Node.js >= 18.x
-MongoDB >= 5.x
-Git
+# Node.js 18+
+node --version
+
+# Docker et Docker Compose
+docker --version
+docker-compose --version
 ```
 
-### 1. Cloner le projet
+### 2. Cloner le projet
 ```bash
-git clone https://github.com/votre-username/dvt-smm-panel.git
-cd dvt-smm-panel
-```
-
-### 2. Installation Backend
-```bash
-cd backend
-npm install
+git clone https://github.com/votre-username/dev-it-smm-panel.git
+cd dev-it-smm-panel
 ```
 
 ### 3. Configuration
 ```bash
-cp .env.example .env
-# Modifier .env avec vos configurations
+# Copier les fichiers d'environnement
+cp backend/.env.example backend/.env
+
+# Modifier les variables dans backend/.env
+# CHARGILY_API_KEY=votre_cle_api_chargily
+# CHARGILY_SECRET_KEY=votre_cle_secrete_chargily
 ```
 
-### 4. Démarrage
+### 4. Démarrage avec Docker
 ```bash
-# Backend
-npm run dev
+# Construire et démarrer tous les services
+docker-compose up -d
 
-# Frontend (serveur local)
-npx serve ../frontend
+# Vérifier les logs
+docker-compose logs -f
 ```
 
-## 🔧 Configuration
+### 5. Accès à l'application
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000/api
+- **MongoDB**: localhost:27017
 
-### Variables d'environnement (.env)
-```env
-# Base
-NODE_ENV=development
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/dvt-smm
+### 6. Compte admin par défaut
+- **Email**: admin@dev-it.dz
+- **Mot de passe**: admin123
 
-# JWT
-JWT_SECRET=votre-cle-jwt-securisee
+## 🔧 Installation Manuelle
 
-# OAuth
-GOOGLE_CLIENT_ID=votre-google-client-id
-GITHUB_CLIENT_ID=votre-github-client-id
-
-# Chargily Pay
-CHARGILY_API_KEY=votre-cle-chargily
-CHARGILY_SECRET_KEY=votre-secret-chargily
-```
-
-### Configuration Chargily Pay
-
-1. Créer un compte sur [Chargily Pay](https://chargily.com)
-2. Obtenir vos clés API (test/production)
-3. Configurer le webhook endpoint : `https://votre-domaine.com/api/payments/webhook`
-4. Ajouter les clés dans le fichier `.env`
-
-### Configuration OAuth
-
-#### Google OAuth
-1. Aller sur [Google Cloud Console](https://console.cloud.google.com)
-2. Créer un nouveau projet ou sélectionner existant
-3. Activer l'API Google+
-4. Créer des identifiants OAuth 2.0
-5. Ajouter les URLs autorisées :
-   - `http://localhost:5000/api/auth/google/callback`
-   - `https://votre-domaine.com/api/auth/google/callback`
-
-#### GitHub OAuth
-1. Aller dans les [paramètres GitHub](https://github.com/settings/developers)
-2. Créer une nouvelle OAuth App
-3. Configurer les URLs :
-   - Homepage URL: `http://localhost:3000`
-   - Authorization callback URL: `http://localhost:5000/api/auth/github/callback`
-
-## 🚀 Usage
-
-### Interface Utilisateur
-
-#### Landing Page
-- Hero section attrayante
-- Présentation des services
-- Plans tarifaires
-- Témoignages clients
-
-#### Dashboard Utilisateur
-- Statistiques personnelles
-- Historique des commandes
-- Gestion du solde
-- Profil utilisateur
-
-#### Panel Admin
-- Vue d'ensemble des statistiques
-- Gestion des utilisateurs
-- Suivi des commandes
-- Configuration des services
-
-### API Endpoints
-
-#### Authentification
-```
-POST /api/auth/register     # Inscription
-POST /api/auth/login        # Connexion
-GET  /api/auth/google       # OAuth Google
-GET  /api/auth/github       # OAuth GitHub
-GET  /api/auth/profile      # Profil utilisateur
-```
-
-#### Paiements
-```
-POST /api/payments/checkout      # Créer checkout
-GET  /api/payments/history       # Historique
-GET  /api/payments/status/:id    # Vérifier statut
-POST /api/payments/webhook       # Webhook Chargily
-```
-
-### Exemples d'usage
-
-#### Créer un checkout de paiement
-```javascript
-const response = await fetch('/api/payments/checkout', {
-    method: 'POST',
-    headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        amount: 5000 // 5000 DZD
-    })
-});
-
-const { checkout_url } = await response.json();
-window.location.href = checkout_url;
-```
-
-#### Connexion utilisateur
-```javascript
-const response = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        email: 'user@example.com',
-        password: 'motdepasse123'
-    })
-});
-
-const { token, user } = await response.json();
-localStorage.setItem('token', token);
-```
-
-## 📊 Structure du Projet
-
-```
-dvt-smm-panel/
-├── frontend/
-│   ├── index.html          # Landing page
-│   ├── style.css           # Styles globaux
-│   ├── app.js              # Logique frontend
-│   └── assets/             # Images, icônes
-├── backend/
-│   ├── server.js           # Point d'entrée
-│   ├── config/             # Configurations
-│   ├── controllers/        # Logique métier
-│   ├── models/             # Modèles MongoDB
-│   ├── routes/             # Routes API
-│   ├── middleware/         # Middlewares
-│   └── utils/              # Utilitaires
-├── docs/                   # Documentation
-├── tests/                  # Tests unitaires
-└── README.md               # Ce fichier
-```
-
-## 🔒 Sécurité
-
-### Mesures implémentées
-- Authentification JWT sécurisée
-- Validation des données d'entrée
-- Protection CORS configurée
-- Rate limiting pour les API
-- Hashage bcrypt des mots de passe
-- Vérification des webhooks Chargily
-- Middleware de protection admin
-
-### Best Practices
-- Variables d'environnement pour les secrets
-- Logs de sécurité
-- Validation côté client et serveur
-- HTTPS en production recommandé
-
-## 🚀 Déploiement
-
-### Déploiement Local
+### Backend
 ```bash
-# Installation complète
-npm run install:all
-
-# Démarrage en développement
+cd backend
+npm install
 npm run dev
+```
 
-# Build production
-npm run build
-
-# Démarrage production
+### Frontend
+```bash
+cd frontend
+npm install
 npm start
 ```
 
-### Déploiement Cloud
-
-#### Heroku
+### Base de données
 ```bash
-# Installation Heroku CLI
-npm install -g heroku
+# MongoDB local
+mongod --dbpath /data/db
 
-# Connexion et création
-heroku login
-heroku create dvt-smm-app
-
-# Variables d'environnement
-heroku config:set NODE_ENV=production
-heroku config:set MONGODB_URI=mongodb+srv://...
-heroku config:set JWT_SECRET=...
-heroku config:set CHARGILY_API_KEY=...
-
-# Déploiement
-git push heroku main
+# Ou utiliser MongoDB Atlas (cloud)
 ```
 
-#### VPS/Serveur dédié
+## 📝 Configuration Chargily Pay
+
+1. Créer un compte sur [Chargily.com](https://chargily.com)
+2. Obtenir vos clés API (test et production)
+3. Configurer les webhooks :
+   - URL: `https://votre-domaine.com/api/payments/webhook`
+   - Événements: `checkout.paid`, `checkout.failed`
+
+## 🌐 Déploiement
+
+### Production avec Docker
 ```bash
-# Installation sur Ubuntu/Debian
-sudo apt update
-sudo apt install nodejs npm mongodb
+# Construire pour la production
+docker-compose -f docker-compose.prod.yml up -d
 
-# Configuration Nginx
-sudo nano /etc/nginx/sites-available/dvt-smm
-
-# Certificat SSL avec Let's Encrypt
-sudo certbot --nginx -d votre-domaine.com
-
-# Process manager avec PM2
-npm install -g pm2
-pm2 start server.js --name="dvt-smm"
-pm2 startup
-pm2 save
+# Ou déployer sur un VPS
+git clone https://github.com/votre-repo/dev-it-smm-panel.git
+cd dev-it-smm-panel
+chmod +x scripts/deploy.sh
+./scripts/deploy.sh
 ```
 
-## 📱 Fonctionnalités Mobiles
-
-### PWA Features
-- Installation sur écran d'accueil
-- Fonctionnement hors ligne (cache)
-- Notifications push
-- Interface optimisée mobile
-
-### Responsive Design
-- Adaptation automatique aux écrans
-- Navigation mobile intuitive
-- Touch-friendly interface
-- Performance optimisée
-
-## 🔧 Maintenance
-
-### Monitoring
-- Logs applicatifs avec Morgan
-- Surveillance des erreurs
-- Métriques de performance
-- Alertes automatiques
-
-### Mises à jour
+### Variables d'environnement production
 ```bash
-# Vérifier les dépendances
-npm audit
+NODE_ENV=production
+MONGODB_URI=mongodb://username:password@host:port/database
+CHARGILY_API_KEY=live_pk_votre_cle_production
+CHARGILY_SECRET_KEY=live_sk_votre_cle_production
+FRONTEND_URL=https://votre-domaine.com
+```
 
-# Mettre à jour
-npm update
+## 📱 API Documentation
 
-# Tests avant déploiement
+### Authentification
+```bash
+# Inscription
+POST /api/auth/register
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
+# Connexion
+POST /api/auth/login
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+### Services
+```bash
+# Liste des services
+GET /api/services
+
+# Services par plateforme
+GET /api/services?platform=instagram&category=followers
+```
+
+### Commandes
+```bash
+# Créer une commande
+POST /api/orders
+{
+  "serviceId": "service_id",
+  "quantity": 1000,
+  "targetUrl": "https://instagram.com/profile"
+}
+```
+
+### Paiements
+```bash
+# Créer un paiement
+POST /api/payments/create
+{
+  "amount": 1500,
+  "method": "chargily_cib",
+  "description": "Recharge de compte"
+}
+```
+
+## 🔐 Sécurité
+
+- Authentification JWT avec tokens de rafraîchissement
+- Validation des données avec Joi
+- Protection CSRF et XSS
+- Rate limiting par IP
+- Chiffrement des mots de passe avec bcrypt
+- Validation des webhooks Chargily
+
+## 🧪 Tests
+
+```bash
+# Backend
+cd backend
+npm test
+
+# Frontend
+cd frontend
 npm test
 ```
 
+## 📊 Monitoring
+
+- Logs structurés avec Morgan
+- Métriques de performance
+- Monitoring des erreurs
+- Dashboard admin avec analytics
+
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! Voici comment procéder :
-
 1. Fork le projet
-2. Créer une branche feature (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. Commit les changements (`git commit -m 'Ajout nouvelle fonctionnalité'`)
-4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+2. Créer une branche feature (`git checkout -b feature/AmazingFeature`)
+3. Commit vos changements (`git commit -m 'Add AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
 5. Ouvrir une Pull Request
 
-### Guidelines
-- Suivre les standards ESLint
-- Ajouter des tests pour les nouvelles fonctionnalités
-- Documenter les changements
-- Respecter l'architecture existante
+## 📄 Licence
 
-## 📝 Licence
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+## 📞 Support
 
-## 🆘 Support
+- **Email**: support@dev-it.dz
+- **Website**: https://dev-it.dz
+- **GitHub Issues**: Pour les bugs et demandes de fonctionnalités
 
-### Documentation
-- [API Documentation](docs/api.md)
-- [Guide d'installation](docs/installation.md)
-- [FAQ](docs/faq.md)
+## 🏗️ Architecture
 
-### Contact
-- **Email**: support@dvt-smm.com
-- **Telegram**: @dvt_smm_support
-- **WhatsApp**: +213 XXX XXX XXX
-
-### Community
-- [Discord](https://discord.gg/dvt-smm)
-- [Forum](https://forum.dvt-smm.com)
-- [GitHub Issues](https://github.com/dvt-smm/issues)
-
----
-
-## 🎉 Remerciements
-
-Merci à tous les contributeurs et à la communauté open source pour leurs outils formidables :
-
-- [Express.js](https://expressjs.com/) - Framework web
-- [MongoDB](https://mongodb.com/) - Base de données
-- [Chart.js](https://chartjs.org/) - Graphiques
-- [Chargily Pay](https://chargily.com/) - Paiements Algérie
-- [Passport.js](http://passportjs.org/) - Authentification
+```
+dev-it-smm-panel/
+├── backend/              # API Node.js/Express
+│   ├── config/          # Configuration
+│   ├── controllers/     # Contrôleurs
+│   ├── models/         # Modèles MongoDB
+│   ├── routes/         # Routes API
+│   ├── middleware/     # Middlewares
+│   ├── services/       # Services métier
+│   └── utils/          # Utilitaires
+├── frontend/            # Interface React
+│   ├── public/         # Fichiers publics
+│   ├── src/
+│   │   ├── components/ # Composants React
+│   │   ├── pages/      # Pages
+│   │   ├── contexts/   # Contextes React
+│   │   ├── services/   # Services API
+│   │   └── styles/     # Styles CSS
+├── docker/             # Configuration Docker
+├── docs/               # Documentation
+└── scripts/            # Scripts utilitaires
+```
 
 ---
 
-**Développé avec ❤️ par l'équipe Dev-IT**
-
-*Boostez votre présence sociale avec DVT SMM !*
+Développé avec ❤️ par l'équipe Dev-IT
