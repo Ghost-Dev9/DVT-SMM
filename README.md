@@ -115,7 +115,7 @@ mongod --dbpath /data/db
 docker-compose -f docker-compose.prod.yml up -d
 
 # Ou déployer sur un VPS
-git clone https://github.com/votre-repo/dev-it-smm-panel.git
+git clone https://github.com/Devmin-Server/DVT-SMM.git
 cd dev-it-smm-panel
 chmod +x scripts/deploy.sh
 ./scripts/deploy.sh
