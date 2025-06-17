@@ -1,4 +1,5 @@
-# Dev-IT SMM Panel
+
+<p align="center"><img src="https://github.com/Ghost-Dev9/Devmin/blob/master/images/Devmin-blue.png" alt="Webmin" width="310px"></p>
 
 Panel SMM professionnel avec intégration Chargily Pay pour l'Algérie.
 
