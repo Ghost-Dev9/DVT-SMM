@@ -1,7 +1,7 @@
 {
   "name": "dev-it-smm-frontend",
   "version": "1.0.0",
-  "description": "Frontend React pour Dev-IT SMM Panel",
+  "description": "Frontend React pour DVT SMM ",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
