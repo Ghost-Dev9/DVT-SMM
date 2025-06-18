@@ -44,7 +44,7 @@ docker-compose --version
 
 ### 2. Cloner le projet
 ```bash
-git clone https://github.com/votre-username/dev-it-smm-panel.git
+git clone https://github.com/Ghost-Dev9/DVT-SMM.git
 cd dev-it-smm-panel
 ```
 
