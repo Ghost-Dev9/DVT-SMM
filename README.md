@@ -117,7 +117,7 @@ docker-compose -f docker-compose.prod.yml up -d
 
 # Ou déployer sur un VPS
 git clone https://github.com/Devmin-Server/DVT-SMM.git
-cd dev-it-smm-panel
+cd DVT-SMM
 chmod +x scripts/deploy.sh
 ./scripts/deploy.sh
 ```
